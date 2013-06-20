@@ -3,7 +3,7 @@ user { 'gussan':
   uid => 1000,
   gid => ['app_user','rbenv'],
   comment => 'gussan',
-  home => '/home/gussan'
+  home => '/home/gussan',
   managehome => true,
   shell => '/bin/bash',
 }
