@@ -24,7 +24,12 @@ RSpec.configure do |c|
       c.ssh.close if c.ssh
       c.host  = host
       options = Net::SSH::Config.for(c.host)
-      user    = 'gussan'
+      user    = ask("User:") { |q| q.echo = true }
+      if ENV['ASK_LOGIN_PASSWORD']
+        options[:password] = ask("Enter login password:") { |q| q.echo = false }
+      else
+        options[:password] = ENV['LOGIN_PASSWORD']
+      end
       
       c.ssh   = Net::SSH.start(c.host, user, options)
     end
