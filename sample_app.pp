@@ -153,3 +153,8 @@ file { '/var/run/unicorn/':
   ensure => directory,
   mode   => 777, 
 }
+
+file { '/var/log/unicorn/':
+  ensure => directory,
+  mode   => 777,
+}
