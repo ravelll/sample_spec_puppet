@@ -160,8 +160,20 @@ file { '/var/log/unicorn/':
   mode   => 777,
 }
 
+file { '/etc/monit.conf':
+  require => Package[$packages],
+  content => template('monit_conf.erb'), 
+  mode    => 700,
+}
+
+file { '/etc/monit.d/unicorn.conf':
+  require => File['/etc/monit.conf'],
+  content => template('unicorn.erb'),
+  mode    => 700,
+}
+
 service { 'monit':
-  require    => Package[$packages],
+  require    => File['/etc/monit.d/unicorn.conf'],
   enable     => true,
   ensure     => running,
   hasrestart => true, 
