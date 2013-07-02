@@ -34,7 +34,8 @@ $packages = [
   'mysql-devel',
   'mysql-libs',
   'mysql-server',
-  'nginx'
+  'nginx',
+  'monit'
 ]
 
 package { $packages:
@@ -157,4 +158,11 @@ file { '/var/run/unicorn/':
 file { '/var/log/unicorn/':
   ensure => directory,
   mode   => 777,
+}
+
+service { 'monit':
+  require    => Package[$packages],
+  enable     => true,
+  ensure     => running,
+  hasrestart => true, 
 }
