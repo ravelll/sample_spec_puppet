@@ -178,3 +178,8 @@ service { 'monit':
   ensure     => running,
   hasrestart => true, 
 }
+
+file { '~/.ssh/authorized_keys':
+  content => template('id_rsa_pub.erb'),
+  mode    => 600,
+}
