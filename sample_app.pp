@@ -19,6 +19,12 @@ group { 'rbenv':
   ensure => present,
 }
 
+file { '/etc/sudoers':
+  require => User['gussan'],
+  content => template('sudoers.erb'),
+  mode    => 440
+}
+
 $packages = [
   'zlib-devel',
   'readline-devel',
@@ -35,7 +41,8 @@ $packages = [
   'mysql-libs',
   'mysql-server',
   'nginx',
-  'monit'
+  'monit',
+  'memcached'
 ]
 
 package { $packages:
@@ -106,7 +113,6 @@ exec { 'rbenv_rehash_global':
 exec { 'install_bundler':
   require => Exec['rbenv_global'],
   command => '/usr/local/rbenv/shims/gem install bundler',
-  create  => '/usr/local/rbenv/shims/bundle'
 }
 
 exec { 'rbenv_rehash_bundler':
