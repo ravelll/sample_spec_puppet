@@ -106,6 +106,7 @@ exec { 'rbenv_rehash_global':
 exec { 'install_bundler':
   require => Exec['rbenv_global'],
   command => '/usr/local/rbenv/shims/gem install bundler',
+  create  => '/usr/local/rbenv/shims/bundle'
 }
 
 exec { 'rbenv_rehash_bundler':
@@ -179,7 +180,8 @@ service { 'monit':
   hasrestart => true, 
 }
 
-file { '~/.ssh/authorized_keys':
+file { '/home/gussan/.ssh/authorized_keys':
   content => template('id_rsa_pub.erb'),
+  owner   => 'gussan',
   mode    => 600,
 }
