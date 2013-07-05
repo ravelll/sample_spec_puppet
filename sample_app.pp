@@ -10,6 +10,11 @@ user { 'gussan':
   shell => '/bin/bash',
 }
 
+file { '/home/gussan':
+  require => User['gussan'],
+  mode    => 755,
+}
+
 group { 'app_user':
   ensure => present,
   gid => 1000,
