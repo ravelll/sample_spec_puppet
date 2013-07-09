@@ -47,7 +47,8 @@ $packages = [
   'mysql-server',
   'nginx',
   'monit',
-  'memcached'
+  'memcached',
+  'nc'
 ]
 
 package { $packages:
