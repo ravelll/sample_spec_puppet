@@ -5,5 +5,5 @@ class nginx::config {
   
   file { '/etc/nginx/conf.d/rails.conf':
       content => template('rails.conf'), 
-    }
+  }
 }
