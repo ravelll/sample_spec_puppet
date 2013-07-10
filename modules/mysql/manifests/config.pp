@@ -1,9 +1,16 @@
 class mysql::config{
-  exec { 'create_user_mysql':
+  exec { 'create_user_out':
     path    => ['/usr/bin','/bin'],
     command => 'mysql -u root -e "grant 
       select, alter, create, drop, delete, insert, update, index 
-      on *.* to \'gussan\'@\'%\';"'
+      on *.* to \'gussan\'@\'%\' identified by \'gussan\';"'
+  }
+
+  exec { 'create_user_local':
+    path    => ['/usr/bin','/bin'],
+    command => 'mysql -u root -e "grant 
+      select, alter, create, drop, delete, insert, update, index 
+      on *.* to \'gussan\'@\'localhost\';"'
   }
 
   exec { 'create_database':
