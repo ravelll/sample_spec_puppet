@@ -14,7 +14,7 @@ class mysql::config{
   }
 
   exec { 'create_database':
-    require => Exec['create_user_mysql'],
+    require => Exec['create_user_local'],
     path    => ['/usr/bin','/bin'],
     command => 'mysql -u gussan -e "create database sample_app;"',
     unless  => 'mysql -u gussan -e "show databases like \'sample_app\';" | grep sample_app'
