@@ -1,6 +1,6 @@
 class nginx::install {
   package { 'nginx':
-    ensure => installed
+    ensure => installed,
   }
   
   file { '/var/log/nginx':
@@ -8,6 +8,6 @@ class nginx::install {
     owner   => 'nginx',
     group   => 'nginx',
     mode    => '0755',
-    require => Package['nginx']
+    require => Package['nginx'],
   }
 }
