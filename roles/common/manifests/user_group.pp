@@ -24,8 +24,6 @@ class common::user_group {
 
   group { 'rbenv':
     ensure      => present,
-    path        => ['/usr/bin','/bin'],
     require     => Group['app_user'],
-    unless      => 'less /etc/group | grep rbenv',
   }
 }
