@@ -9,6 +9,7 @@ class common::user_group {
     home        => '/home/gussan',
     managehome  => true,
     shell       => '/bin/bash',
+    require     => Group['rbenv'],
   }
 
   file  { '/home/gussan':
@@ -19,5 +20,12 @@ class common::user_group {
   group { 'app_user':
     ensure      => present,
     gid         => '1000',
+  }
+
+  group { 'rbenv':
+    ensure      => present,
+    path        => ['/usr/bin','/bin'],
+    require     => Group['app_user'],
+    unless      => 'less /etc/group | grep rbenv',
   }
 }

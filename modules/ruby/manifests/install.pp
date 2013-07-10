@@ -1,6 +1,8 @@
 class rbenv::install {
   group { 'rbenv':
     ensure  => present,
+    path    => ['/usr/bin','/bin'],
+    unless  => 'less /etc/group | grep rbenv',
   }
   
   exec { 'build_rbenv':
