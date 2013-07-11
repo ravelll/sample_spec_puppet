@@ -1,18 +1,4 @@
 class ruby::install {
-  group { 'rbenv':
-    ensure  => present,
-  }
-
-  user { 'gussan':
-    group   => 'rbenv',
-    require => Group['rbenv'],
-  }
-
-  user { 'ravelll':
-    group   => 'rbenv',
-    require => Group['rbenv'],
-  }
-
   exec { 'build_rbenv':
     user        => 'root',
     cwd         => '/usr/local',
