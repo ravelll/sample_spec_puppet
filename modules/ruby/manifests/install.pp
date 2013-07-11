@@ -1,4 +1,4 @@
-class rbenv::install {
+class ruby::install {
   group { 'rbenv':
     ensure  => present,
   }
