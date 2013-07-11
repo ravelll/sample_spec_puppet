@@ -56,21 +56,25 @@ class ruby::install {
 
   exec { 'rbenv_global':
     require => Exec['ruby_install'],
+    user    => 'root',
     command => '/usr/local/rbenv/bin/rbenv global 2.0.0-p195',
   }
 
   exec { 'rbenv_rehash_global':
     require => Exec['rbenv_global'],
+    user    => 'root',
     command => '/usr/local/rbenv/bin/rbenv rehash',
   }
 
   exec { 'install_bundler':
     require => Exec['rbenv_global'],
+    user    => 'root',
     command => '/usr/local/rbenv/shims/gem install bundler',
   }
 
   exec { 'rbenv_rehash_bundler':
     require => Exec['install_bundler'],
+    user    => 'root',
     command => '/usr/local/rbenv/bin/rbenv rehash',
   }
 }
