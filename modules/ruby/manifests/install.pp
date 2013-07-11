@@ -43,7 +43,7 @@ class ruby::install {
 
   file { '/etc/profile.d/rbenv.sh':
     require => Exec['install_ruby_build'],
-    content => template('rbenv.sh'), 
+    content => template('ruby/templates/rbenv.sh'), 
   }
 
   exec { 'ruby_install':
