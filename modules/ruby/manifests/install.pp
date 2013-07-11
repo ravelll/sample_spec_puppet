@@ -1,19 +1,30 @@
 class ruby::install {
-  group { 'grp_rbenv':
+  group { 'rbenv':
     ensure  => present,
   }
-  
+
+  user { 'gussan':
+    group   => 'rbenv',
+    require => Group['rbenv'],
+  }
+
+  user { 'ravelll':
+    group   => 'rbenv',
+    require => Group['rbenv'],
+  }
+
   exec { 'build_rbenv':
     user        => 'root',
     cwd         => '/usr/local',
     path        => ['/bin', '/usr/bin'],
     command     => 'git clone git://github.com/sstephenson/rbenv.git rbenv',
     creates     => '/usr/local/rbenv',
+    require     => Exec['chmod_rbenv'],
     timeout     => 0,
   }
 
   exec { 'chgrp_rbenv':
-    require => Group['grp_rbenv'],
+    require => Group['rbenv'],
     cwd     => '/usr/local',
     path    => '/bin',  
     command => 'chgrp -R rbenv rbenv',    

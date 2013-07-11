@@ -3,13 +3,12 @@ class common::user_group {
     ensure      => present,
     uid         => '1000',
     gid         => '1000',
-    groups      => ['rbenv','app_user'],
+    groups      => 'app_user',
     password    => 'gussan',
     comment     => 'gussan',
     home        => '/home/gussan',
     managehome  => true,
     shell       => '/bin/bash',
-    require     => Group['rbenv'],
   }
 
   file  { '/home/gussan':
@@ -20,10 +19,5 @@ class common::user_group {
   group { 'app_user':
     ensure      => present,
     gid         => '1000',
-  }
-
-  group { 'rbenv':
-    ensure      => present,
-    require     => Group['app_user'],
   }
 }
