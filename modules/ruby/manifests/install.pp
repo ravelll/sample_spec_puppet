@@ -1,5 +1,5 @@
 class ruby::install {
-  group { 'rbenv':
+  group { 'grp_rbenv':
     ensure  => present,
   }
   
@@ -13,7 +13,7 @@ class ruby::install {
   }
 
   exec { 'chgrp_rbenv':
-    require => Exec['build_rbenv'],
+    require => Exec['grp_rbenv'],
     cwd     => '/usr/local',
     path    => '/bin',  
     command => 'chgrp -R rbenv rbenv',    
