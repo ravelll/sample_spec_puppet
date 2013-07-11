@@ -13,7 +13,7 @@ class ruby::install {
   }
 
   exec { 'chgrp_rbenv':
-    require => Exec['grp_rbenv'],
+    require => Group['grp_rbenv'],
     cwd     => '/usr/local',
     path    => '/bin',  
     command => 'chgrp -R rbenv rbenv',    
@@ -48,7 +48,8 @@ class ruby::install {
 
   exec { 'ruby_install':
     require => File['/etc/profile.d/rbenv.sh'],
-    timeout => 0, 
+    timeout => 0,
+    user    => 'root',
     command => '/usr/local/rbenv/bin/rbenv install 2.0.0-p195',
     creates => '/usr/local/rbenv/versions/2.0.0-p195',
   }

@@ -1,3 +1,3 @@
-class db::monit {
+class app::monit {
   include ::monit
 }

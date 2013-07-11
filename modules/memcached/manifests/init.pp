@@ -1,1 +1,3 @@
-class 
+class memcached { 
+  include memcached::install
+}

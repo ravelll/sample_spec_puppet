@@ -10,6 +10,6 @@ class unicorn::config {
   }
 
   file { '/etc/monit.d/unicorn.conf':
-    content => template('unicorn.conf'),
+    content => template('unicorn/unicorn.conf'),
   }
 }

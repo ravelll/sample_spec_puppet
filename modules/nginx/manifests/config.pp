@@ -4,6 +4,6 @@ class nginx::config {
   $server_name = 'app002.gussan.pb'  
   
   file { '/etc/nginx/conf.d/rails.conf':
-      content => template('rails.conf'), 
+      content => template('nginx/rails.conf'), 
   }
 }
