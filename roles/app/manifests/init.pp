@@ -11,7 +11,7 @@ class app {
   ->Class['app::ruby']
   ->Class['app::mysql']
   ->Class['app::nginx']
-  ->Class['app::unicorn']
   ->Class['app::memcached']
   ->Class['app::monit']
+  ->Class['app::unicorn']
 }

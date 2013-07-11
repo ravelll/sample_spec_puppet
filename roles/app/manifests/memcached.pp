@@ -1,3 +1,3 @@
-class db::memcached {
+class app::memcached {
   include ::memcached
 }
