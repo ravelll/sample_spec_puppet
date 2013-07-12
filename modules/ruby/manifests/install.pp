@@ -9,13 +9,15 @@ class ruby::install {
   }
 
   exec { 'chgrp_rbenv':
+    user    => 'root',
     require => Exec['build_rbenv'],
     cwd     => '/usr/local',
     path    => '/bin',  
-    command => 'chgrp -R rbenv rbenv',    
+    command => 'chgrp -R rbenv rbenv', 
   }
 
   exec { 'chmod_rbenv':
+    user    => 'root',
     require => Exec['chgrp_rbenv'],
     cwd     => '/usr/local',
     path    => '/bin',  
@@ -23,6 +25,7 @@ class ruby::install {
   }
 
   exec { 'build_ruby_build':
+    user    => 'root',
     require => Exec['chmod_rbenv'],
     cwd     => '/usr/local',
     path    => '/usr/bin',
@@ -31,6 +34,7 @@ class ruby::install {
   }
 
   exec { 'install_ruby_build':
+    user    => 'root',
     require => Exec['build_ruby_build'],
     cwd     => '/usr/local/ruby-build',
     path    => '/bin',
@@ -38,27 +42,28 @@ class ruby::install {
   }
 
   file { '/etc/profile.d/rbenv.sh':
+    user    => 'root',
     require => Exec['install_ruby_build'],
     content => template('ruby/rbenv.sh'), 
   }
 
   exec { 'ruby_install':
+    user    => 'root',
     require => File['/etc/profile.d/rbenv.sh'],
     timeout => 0,
-    user    => 'root',
     command => '/usr/local/rbenv/bin/rbenv install 2.0.0-p195',
     creates => '/usr/local/rbenv/versions/2.0.0-p195',
   }
 
   exec { 'rbenv_global':
-    require => Exec['ruby_install'],
     user    => 'root',
+    require => Exec['ruby_install'],
     command => '/usr/local/rbenv/bin/rbenv global 2.0.0-p195',
   }
 
   exec { 'rbenv_rehash_global':
+    user    => 'root',    
     require => Exec['rbenv_global'],
-    user    => 'root',
     command => '/usr/local/rbenv/bin/rbenv rehash',
   }
 
