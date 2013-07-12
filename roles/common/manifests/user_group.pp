@@ -3,7 +3,7 @@ class common::user_group {
     ensure      => present,
     uid         => '1000',
     gid         => '1000',
-    groups      => 'app_user',
+    groups      => ['app_user','rbenv'],
     password    => 'gussan',
     comment     => 'gussan',
     home        => '/home/gussan',

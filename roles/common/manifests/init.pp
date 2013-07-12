@@ -7,5 +7,5 @@ class common {
     Class['common::user_group']
   ->Class['common::ssh_key']
   ->Class['common::packages']
-  ->Class['sudoers']
+  ->Class['common::sudoers']
 }

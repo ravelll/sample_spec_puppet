@@ -2,6 +2,7 @@ class common::packages {
   $packages = [
     'zlib-devel',
     'readline-devel',
+    'openssl-devel',
     'ncurses-devel',
     'gdbm-devel',
     'db4-devel',

@@ -10,7 +10,7 @@ class ruby::install {
   }
 
   exec { 'chgrp_rbenv':
-    require => Group['rbenv'],
+    require => Exec['build_rbenv'],
     cwd     => '/usr/local',
     path    => '/bin',  
     command => 'chgrp -R rbenv rbenv',    
@@ -24,7 +24,7 @@ class ruby::install {
   }
 
   exec { 'build_ruby_build':
-    require => Exec['build_rbenv'],
+    require => Exec['chmod_rbenv'],
     cwd     => '/usr/local',
     path    => '/usr/bin',
     command => 'git clone git://github.com/sstephenson/ruby-build.git ruby-build',
