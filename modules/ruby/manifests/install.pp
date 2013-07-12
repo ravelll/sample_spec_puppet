@@ -51,7 +51,8 @@ class ruby::install {
     user    => 'root',
     require => File['/etc/profile.d/rbenv.sh'],
     timeout => 0,
-    command => '/usr/local/rbenv/bin/rbenv install 2.0.0-p195',
+    path    => ['/bin','/usr/bin'],
+    command => "bash -c 'source /etc/profile.d/rbenv.sh'; /usr/local/rbenv/bin/rbenv install 2.0.0-p195",
     creates => '/usr/local/rbenv/versions/2.0.0-p195',
   }
 
